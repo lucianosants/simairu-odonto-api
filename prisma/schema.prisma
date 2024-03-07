@@ -12,3 +12,82 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id            String   @id @default(uuid())
+  name          String   @unique
+  email         String   @unique
+  password_hash String
+  created_at    DateTime @default(now())
+  avatar        Avatar[]
+
+  @@map("users")
+}
+
+model Doctor {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  email      String   @unique
+  available  Boolean
+  created_at DateTime @default(now())
+
+  patients       Patient[]
+  appointments   Appointment[]
+  availabilities Availability[]
+
+  @@map("doctors")
+}
+
+model Patient {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  email      String   @unique
+  created_at DateTime @default(now())
+
+  current_doctor Doctor        @relation(fields: [doctorId], references: [id])
+  doctorId       String
+  appointments   Appointment[]
+
+  @@map("patients")
+}
+
+model Appointment {
+  id         String    @id @default(uuid())
+  day        DateTime
+  created_at DateTime? @default(now())
+  status     Status    @default(PENDING)
+
+  doctor_id  String
+  patient_id String
+
+  doctor  Doctor  @relation(fields: [doctor_id], references: [id])
+  patient Patient @relation(fields: [patient_id], references: [id])
+
+  @@map("appointment")
+}
+
+model Avatar {
+  id      String @id @default(uuid())
+  path    String
+  user_id String
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("avatars")
+}
+
+model Availability {
+  id  String   @id @default(uuid())
+  day DateTime
+
+  doctor_id String
+  doctor    Doctor @relation(fields: [doctor_id], references: [id])
+
+  @@map("availabilities")
+}
+
+enum Status {
+  PENDING
+  HELD
+  NOT_HELD
+}
