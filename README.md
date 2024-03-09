@@ -27,8 +27,8 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 ## `Funcionalidades`
 
   - [ ] `RFs (Requisitos funcionais)`
-	- [ ] Deve ser possível se autenticar
-	- [ ] Deve ser possível obter o perfil de um usuário logado
+	- [x] Deve ser possível se autenticar
+	- [x] Deve ser possível obter o perfil de um usuário logado
 	- [ ] Deve ser possível criar o cadastro de um médico 
 	- [ ] Deve ser possível criar o cadastro de um paciente
 	- [ ] Deve ser possível obter uma lista de médicos
@@ -48,8 +48,8 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [ ] Uma consulta só poderá ser agendada se o médico tiver disponibilidade na data
 	- [ ] A consulta não pode ser cancelada ou ter o médico trocado em menos de um dia
 -  [ ] `RNFs (Requisitos não funcionais)`
-	- [ ] A senha precisa ser criptografada
-	- [ ] Os dados precisam persistir em um banco de dados postgreSQL
+	- [x] A senha precisa ser criptografada
+	- [x] Os dados precisam persistir em um banco de dados postgreSQL
 	- [ ] Todas as listas precisam ser paginadas com até 20 itens
 	- [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
 
