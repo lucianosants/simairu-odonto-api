@@ -29,7 +29,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
   - [ ] `RFs (Requisitos funcionais)`
 	- [x] Deve ser possível se autenticar
 	- [x] Deve ser possível obter o perfil de um usuário logado
-	- [ ] Deve ser possível criar o cadastro de um médico 
+	- [x] Deve ser possível criar o cadastro de um médico 
 	- [ ] Deve ser possível criar o cadastro de um paciente
 	- [ ] Deve ser possível obter uma lista de médicos
 	- [ ] Deve ser possível obter uma lista de pacientes
