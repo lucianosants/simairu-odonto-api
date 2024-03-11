@@ -1,4 +1,3 @@
-import { prisma } from '@/lib/prisma';
 import { FastifyInstance } from 'fastify';
 import request from 'supertest';
 
@@ -10,7 +9,7 @@ export async function getUserToken(app: FastifyInstance) {
 	};
 
 	await request(app.server)
-		.post('/users')
+		.post('/users/auth/register')
 		.send({ ...data });
 
 	const response = await request(app.server)

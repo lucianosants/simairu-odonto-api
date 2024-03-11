@@ -14,7 +14,7 @@ A seguir estão as rotas de usuário com todos os detalhes necessários,
 Rota para criar um novo usuário e ter acesso às funcionalidades.
 
 ```bash
-POST: /users
+POST: /users/auth/register
 ```
 
 
