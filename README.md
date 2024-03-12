@@ -30,7 +30,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [x] Deve ser possível se autenticar
 	- [x] Deve ser possível obter o perfil de um usuário logado
 	- [x] Deve ser possível criar o cadastro de um médico 
-	- [ ] Deve ser possível obter uma lista de médicos
+	- [x] Deve ser possível obter uma lista de médicos
 	- [ ] Deve ser possível Alterar informações de um médico
 	- [ ] Deve ser possível criar o cadastro de um paciente
 	- [ ] Deve ser possível obter uma lista de pacientes

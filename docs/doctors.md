@@ -47,3 +47,57 @@ status: 201
 }
 ```
 
+---
+
+
+## Listar todos os médicos
+
+Rota para listar e obter todos os médicos registrados.
+
+```bash
+GET: /doctors
+```
+
+
+### `Search Params(query) da requisição`
+
+Por padrão é exibida uma lista com 20 médicos
+
+| Query | Tipo   | Descrição         |
+| --------- | ------ | ----------------- |
+| take      | string | Número de médicos  |
+| skip     | string | Quantidade a pular para próxima página |
+
+### `Exemplo de URL com parâmetros`
+
+```bash
+GET: /doctors?take=10&skip=0
+```
+
+
+### `Resposta`
+
+```http 
+status: 200
+```
+
+```json
+{
+    "doctors": [
+        {
+            "id": "_some_id",
+            "name": "Hans",
+            "email": "hans@mail.com",
+            "available": true,
+            "created_at": "2024-03-12T18:40:15.938Z"
+        }
+    ],
+    "count": 1,
+    "totalPages": 1
+}
+```
+
+---
+
+
+
