@@ -2,6 +2,7 @@ import { Doctor, Prisma } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 
 import { DoctorsRepository } from '../doctors-repository';
+import { FindAllDoctorsProps, PaginationParamsProps } from '@/@types';
 
 export class InMemoryDoctorsRepository implements DoctorsRepository {
 	public items: Doctor[] = [];
@@ -34,5 +35,21 @@ export class InMemoryDoctorsRepository implements DoctorsRepository {
 		if (!doctor) return null;
 
 		return doctor;
+	}
+
+	public async findAll(
+		props: PaginationParamsProps
+	): Promise<FindAllDoctorsProps | null> {
+		const doctors = this.items;
+
+		if (!doctors) return null;
+
+		const allDoctors = {
+			count: doctors.length,
+			doctors: doctors,
+			totalPages: Math.ceil(doctors.length / props.take),
+		};
+
+		return allDoctors;
 	}
 }
