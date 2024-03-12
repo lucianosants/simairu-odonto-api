@@ -48,11 +48,11 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [ ] Não poderá ter médicos e pacientes duplicados
 	- [ ] Uma consulta só poderá ser agendada se o médico tiver disponibilidade na data
 	- [ ] A consulta não pode ser cancelada ou ter o médico trocado em menos de um dia
--  [ ] `RNFs (Requisitos não funcionais)`
+-  [x] `RNFs (Requisitos não funcionais)`
 	- [x] A senha precisa ser criptografada
 	- [x] Os dados precisam persistir em um banco de dados postgreSQL
-	- [ ] Todas as listas precisam ser paginadas com até 20 itens
-	- [ ] O usuário deve ser identificado por um JWT (JSON Web Token)
+	- [x] Todas as listas precisam ser paginadas com até 20 itens
+	- [x] O usuário deve ser identificado por um JWT (JSON Web Token)
 
 ## `Instalação`
 
