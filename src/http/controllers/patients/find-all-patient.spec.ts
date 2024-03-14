@@ -2,9 +2,10 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import request from 'supertest';
 
 import { app } from '@/app';
+
 import { createPatients } from '@/utils/test/create-patient';
 
-describe('Register Patient (e2e)', () => {
+describe('Find All Patients (e2e)', () => {
 	beforeAll(async () => {
 		await app.ready();
 	});
@@ -14,17 +15,13 @@ describe('Register Patient (e2e)', () => {
 	});
 
 	it('should be able to register a new patient', async () => {
-		const { auth, current_doctor } = await createPatients(app);
+		const { auth } = await createPatients(app);
 
 		const response = await request(app.server)
-			.post('/patients')
+			.get('/patients')
 			.set(auth.field, auth.val)
-			.send({
-				name: 'John Doe',
-				email: 'john@mail.com',
-				current_doctor,
-			});
+			.query({ take: '20', skip: '0' });
 
-		expect(response.statusCode).toEqual(201);
+		expect(response.statusCode).toEqual(200);
 	});
 });
