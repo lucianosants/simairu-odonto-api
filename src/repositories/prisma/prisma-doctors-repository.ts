@@ -10,6 +10,12 @@ export class PrismaDoctorsRepository implements DoctorsRepository {
 		return doctor;
 	}
 
+	public async findById(id: string): Promise<Doctor | null> {
+		const doctor = await prisma.doctor.findUnique({ where: { id } });
+
+		return doctor;
+	}
+
 	public async findByName(name: string): Promise<Doctor | null> {
 		const doctor = await prisma.doctor.findUnique({ where: { name } });
 

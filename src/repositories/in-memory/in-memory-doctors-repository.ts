@@ -52,4 +52,12 @@ export class InMemoryDoctorsRepository implements DoctorsRepository {
 
 		return allDoctors;
 	}
+
+	public async findById(id: string): Promise<Doctor | null> {
+		const doctor = this.items.find((doctor) => doctor.id === id);
+
+		if (!doctor) return null;
+
+		return doctor;
+	}
 }
