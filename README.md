@@ -33,7 +33,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [x] Deve ser possível obter uma lista de médicos
 	- [ ] Deve ser possível Alterar informações de um médico
 	- [x] Deve ser possível criar o cadastro de um paciente
-	- [ ] Deve ser possível obter uma lista de pacientes
+	- [x] Deve ser possível obter uma lista de pacientes
 	- [ ] Deve ser possível atualizar o status do paciente
 	- [ ] Deve ser possível obter uma lista de consultas
 	- [ ] Deve ser possível buscar uma consulta por id

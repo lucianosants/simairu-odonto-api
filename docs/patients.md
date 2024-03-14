@@ -52,3 +52,50 @@ status: 201
 ---
 
 
+## Listar todos os pacientes
+
+Rota para listar e obter todos os pacientes cadastrados.
+
+```bash
+GET: /patients
+```
+
+### `Search Params(query) da requisição`
+
+Por padrão é exibida uma lista com 20 pacientes por página.
+
+| Query | Tipo   | Descrição         |
+| --------- | ------ | ----------------- |
+| take      | string | Número de pacientes  |
+| skip     | string | Quantidade a pular para próxima página |
+
+### `Exemplo de URL com parâmetros`
+
+```bash
+GET: /patients?take=10&skip=0
+```
+
+
+### `Resposta`
+
+```http 
+status: 200
+```
+
+```json
+{
+    "patients": [
+        {
+          "id": "<id_do_paciente>",
+      	  "name": "John Doe",
+          "email": "john@mail.com",
+          "created_at": "2024-03-14T20:11:53.587Z",
+          "doctorId": "<id_do_medico>"
+        }
+    ],
+    "count": 1,
+    "totalPages": 1
+}
+```
+
+
