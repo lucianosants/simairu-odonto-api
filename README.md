@@ -32,7 +32,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [x] Deve ser possível criar o cadastro de um médico 
 	- [x] Deve ser possível obter uma lista de médicos
 	- [ ] Deve ser possível Alterar informações de um médico
-	- [ ] Deve ser possível criar o cadastro de um paciente
+	- [x] Deve ser possível criar o cadastro de um paciente
 	- [ ] Deve ser possível obter uma lista de pacientes
 	- [ ] Deve ser possível atualizar o status do paciente
 	- [ ] Deve ser possível obter uma lista de consultas
@@ -45,7 +45,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [ ] Deve ser possível marcar a consulta como realizada
 	- [ ] Deve ser possível marcar uma consulta como não realizada
 -  [ ] `RN (Regras de negócio)` 
-	- [ ] Não poderá ter médicos e pacientes duplicados
+	- [x] Não poderá ter médicos e pacientes duplicados
 	- [ ] Uma consulta só poderá ser agendada se o médico tiver disponibilidade na data
 	- [ ] A consulta não pode ser cancelada ou ter o médico trocado em menos de um dia
 -  [x] `RNFs (Requisitos não funcionais)`
