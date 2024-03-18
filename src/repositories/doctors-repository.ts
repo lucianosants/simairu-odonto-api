@@ -7,4 +7,5 @@ export interface DoctorsRepository {
 	findByName(name: string): Promise<Doctor | null>;
 	findByEmail(email: string): Promise<Doctor | null>;
 	findAll(props: PaginationParamsProps): Promise<FindAllDoctorsProps | null>;
+	updateDoctor(id: string, data: Prisma.DoctorUpdateInput): Promise<Doctor>;
 }
