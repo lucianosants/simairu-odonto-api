@@ -4,6 +4,10 @@ import { randomUUID } from 'node:crypto';
 import { DoctorsRepository } from '../doctors-repository';
 import { FindAllDoctorsProps, PaginationParamsProps } from '@/@types';
 
+interface UpdateDoctorProps {
+	available: boolean;
+}
+
 export class InMemoryDoctorsRepository implements DoctorsRepository {
 	public items: Doctor[] = [];
 
@@ -59,5 +63,21 @@ export class InMemoryDoctorsRepository implements DoctorsRepository {
 		if (!doctor) return null;
 
 		return doctor;
+	}
+
+	public async updateDoctor(
+		id: string,
+		data: UpdateDoctorProps
+	): Promise<Doctor> {
+		const doctors = this.items.map((doctor) => {
+			if (doctor.id === id)
+				return { ...doctor, available: data.available };
+
+			return doctor;
+		});
+
+		const doctor = doctors.find((doctor) => doctor.id === id);
+
+		return { ...doctor! };
 	}
 }
