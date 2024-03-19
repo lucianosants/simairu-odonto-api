@@ -100,4 +100,61 @@ status: 200
 ---
 
 
+## Atualizar médico
+
+Rota para atualizar o status de um médico.
+
+
+```bash
+
+PATCH: /doctors/<doctor_id>
+
+```
+
+### `Parâmetros da requisição`
+
+| Parâmetros | Tipo    | Descrição        |
+| ---------- | ------- | ---------------- |
+| id         | string  | ID do médico     |
+| available  | boolean | Status do médico |
+
+
+### `Corpo da solicitação`
+
+  
+```json
+
+{
+
+	"available": true,
+
+}
+
+```
+
+
+### `Resposta`
+
+
+```http
+
+status: 201
+
+```
+
+  
+
+```js
+
+{
+
+message: 'Doctor updated successfully!'
+
+}
+
+```
+
+
+
+
 
