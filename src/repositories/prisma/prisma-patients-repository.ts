@@ -40,4 +40,10 @@ export class PrismaPatientsRepository implements PatientsRepository {
 
 		return { patients, count, totalPages };
 	}
+
+	public async findById(id: string): Promise<Patient | null> {
+		const patient = await prisma.patient.findUnique({ where: { id } });
+
+		return patient;
+	}
 }

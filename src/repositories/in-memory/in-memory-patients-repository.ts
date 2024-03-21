@@ -50,4 +50,12 @@ export class InMemoryPatientsRepository implements PatientsRepository {
 			count: patients.length,
 		};
 	}
+
+	public async findById(id: string): Promise<Patient | null> {
+		const patient = this.items.find((item) => item.id === id);
+
+		if (!patient) return null;
+
+		return patient;
+	}
 }
