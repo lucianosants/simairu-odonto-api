@@ -1,7 +1,8 @@
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import { Prisma, Appointment } from '@prisma/client';
 
 import { AppointmentsRepository } from '../appointments-repository';
+import { PaginationParamsProps, FindAllAppointmentsProps } from '@/@types';
 
 export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 	public items: Appointment[] = [];
@@ -27,5 +28,19 @@ export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 		const appointment = this.items.find((item) => item.id === id);
 
 		return appointment ?? null;
+	}
+
+	public async findAll(
+		props: PaginationParamsProps
+	): Promise<FindAllAppointmentsProps | null> {
+		const appointments = this.items;
+
+		if (!appointments) return null;
+
+		return {
+			appointments,
+			count: appointments.length,
+			totalPages: Math.ceil(appointments.length / props.take),
+		};
 	}
 }

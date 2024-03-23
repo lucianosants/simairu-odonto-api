@@ -33,7 +33,7 @@ describe('Find All Doctors Use Case', () => {
 		expect(doctors?.totalPages).toEqual(1);
 	});
 
-	it('should be able to find a empty list', async () => {
+	it('should be able to find an empty list', async () => {
 		const doctors = await sut.execute({ take: 2, skip: 0 });
 
 		expect(doctors?.doctors).toHaveLength(0);
