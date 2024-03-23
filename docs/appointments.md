@@ -58,7 +58,58 @@ status: 201
 ```
 
   
-
 ---
 
- 
+ ## Listar todas as consultas
+
+
+Rota para listar e obter todos as consultas registradas.
+
+```bash
+GET: /appointments
+```
+
+  
+### `Search Params(query) da requisição`
+
+  
+Por padrão é exibida uma lista com 20 médicos
+
+| Query | Tipo | Descrição |
+| --------- | ------ | ----------------- |
+| take | string | Número de consultas |
+| skip | string | Quantidade a pular para próxima página |
+
+  
+### `Exemplo de URL com parâmetros`
+  
+```bash
+GET: /appointments?take=10&skip=0
+```
+
+  
+### `Resposta`
+
+```http
+status: 200
+```
+
+
+```json
+{
+	"appointments": [
+		{
+	      "id": "<appointment_id>",
+	      "day": "2024-03-21T13:02:30.689Z",
+	      "created_at": "2024-03-21T13:37:27.357Z",
+	      "status": "PENDING",
+	      "doctor_id": "<doctor_id>",
+	      "patient_id": "<patient_id>"
+	    }
+	],
+	"count": 1,
+	"totalPages": 1
+}
+```
+
+---
