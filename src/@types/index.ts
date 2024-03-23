@@ -1,4 +1,9 @@
-import { Doctor, Patient } from '@prisma/client';
+import { Appointment, Doctor, Patient } from '@prisma/client';
+
+export interface PaginationParamsProps {
+	skip: number;
+	take: number;
+}
 
 export interface FindAllDoctorsProps {
 	doctors: Doctor[];
@@ -6,13 +11,14 @@ export interface FindAllDoctorsProps {
 	totalPages: number;
 }
 
-export interface PaginationParamsProps {
-	skip: number;
-	take: number;
-}
-
 export interface FindAllPatientsProps {
 	patients: Patient[];
+	count: number;
+	totalPages: number;
+}
+
+export interface FindAllAppointmentsProps {
+	appointments: Appointment[];
 	count: number;
 	totalPages: number;
 }

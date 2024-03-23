@@ -1,6 +1,8 @@
 import { Prisma, Appointment } from '@prisma/client';
+
 import { AppointmentsRepository } from '../appointments-repository';
 import { prisma } from '@/lib/prisma';
+import { PaginationParamsProps, FindAllAppointmentsProps } from '@/@types';
 
 export class PrismaAppointmentsRepository implements AppointmentsRepository {
 	public async create(
@@ -17,5 +19,23 @@ export class PrismaAppointmentsRepository implements AppointmentsRepository {
 		});
 
 		return appointment;
+	}
+
+	public async findAll({
+		skip,
+		take,
+	}: PaginationParamsProps): Promise<FindAllAppointmentsProps | null> {
+		const [appointments, count] = await prisma.$transaction([
+			prisma.appointment.findMany({
+				skip,
+				take,
+				orderBy: { day: 'asc' },
+			}),
+			prisma.appointment.count(),
+		]);
+
+		const totalPages = Math.ceil(count / take);
+
+		return { appointments, totalPages, count };
 	}
 }
