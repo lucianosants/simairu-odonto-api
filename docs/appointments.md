@@ -113,3 +113,38 @@ status: 200
 ```
 
 ---
+
+
+## Buscar consulta por id
+
+  
+
+Rota para obter uma consulta por id.
+
+```bash
+GET: /appointments/<appointment_id>
+```
+
+  
+### `Resposta`
+
+```http
+status: 200
+```
+
+
+```json
+{
+	"appointment": {
+	      "id": "<appointment_id>",
+	      "day": "2024-03-21T13:02:30.689Z",
+	      "created_at": "2024-03-21T13:37:27.357Z",
+	      "status": "PENDING",
+	      "doctor_id": "<doctor_id>",
+	      "patient_id": "<patient_id>"
+	}
+}
+```
+
+---
+
