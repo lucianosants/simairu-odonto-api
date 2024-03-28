@@ -60,7 +60,7 @@ status: 201
   
 ---
 
- ## Listar todas as consultas
+## Listar todas as consultas
 
 
 Rota para listar e obter todos as consultas registradas.
@@ -99,12 +99,12 @@ status: 200
 {
 	"appointments": [
 		{
-	      "id": "<appointment_id>",
-	      "day": "04-26-2024",
-	      "created_at": "2024-03-21T13:37:27.357Z",
-	      "status": "PENDING",
-	      "doctor_id": "<doctor_id>",
-	      "patient_id": "<patient_id>"
+			"id": "<appointment_id>",
+			"day": "04-26-2024",
+			"created_at": "2024-03-21T13:37:27.357Z",
+			"status": "PENDING",
+			"doctor_id": "<doctor_id>",
+			"patient_id": "<patient_id>"
 	    }
 	],
 	"count": 1,
@@ -136,13 +136,68 @@ status: 200
 ```json
 {
 	"appointment": {
-	      "id": "<appointment_id>",
-	      "day": "04-26-2024",
-	      "created_at": "2024-03-21T13:37:27.357Z",
-	      "status": "PENDING",
-	      "doctor_id": "<doctor_id>",
-	      "patient_id": "<patient_id>"
+		"id": "<appointment_id>",
+		"day": "04-26-2024",
+		"created_at": "2024-03-21T13:37:27.357Z",
+		"status": "PENDING",
+		"doctor_id": "<doctor_id>",
+		"patient_id": "<patient_id>"
 	}
+}
+```
+
+---
+
+## Buscar consulta por dia
+
+  
+
+Rota para obter uma consulta por dia.
+
+```bash
+POST: /appointments/day
+```
+
+### `Parâmetros da requisição`
+
+| Parâmetros | Tipo   | Descrição           |
+| ---------- | ------ | ------------------- |
+| day        | String   | Data de agendamento |
+| take   	 | Number | Quantidade de consultas  |
+| skip  | String | Quantidade a pular para próxima página |
+
+
+### `Corpo da solicitação`
+
+
+```json
+{
+	"day": "4/26/2024", 
+	"skip": 0, 
+	"take": 10 
+}
+```
+
+  
+### `Resposta`
+
+```http
+status: 200
+```
+
+
+```json
+{
+	"appointments": [
+		{
+			"id": "<appointment_id>",
+			"day": "04-26-2024",
+			"created_at": "2024-03-21T13:37:27.357Z",
+			"status": "PENDING",
+			"doctor_id": "<doctor_id>",
+			"patient_id": "<patient_id>"
+		} 
+	]
 }
 ```
 
