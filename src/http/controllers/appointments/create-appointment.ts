@@ -11,7 +11,7 @@ export async function createAppointment(
 	reply: FastifyReply
 ) {
 	const createAppointmentBodySchema = z.object({
-		day: z.coerce.date(),
+		day: z.string(),
 		doctorId: z.string(),
 		patientId: z.string(),
 		status: z.enum(['PENDING', 'HELD', 'NOT_HELD']).default('PENDING'),

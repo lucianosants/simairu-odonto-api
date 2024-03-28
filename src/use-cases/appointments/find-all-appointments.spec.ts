@@ -37,7 +37,7 @@ describe('Find All Appointments Use Case', () => {
 		});
 
 		await appointmentsRepository.create({
-			day: new Date(),
+			day: new Date('04-26-2024').toLocaleDateString(),
 			doctor: { connect: { id: doctor.id } },
 			patient: { connect: { id: patient.id } },
 			status: 'PENDING',

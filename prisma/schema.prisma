@@ -53,7 +53,7 @@ model Patient {
 
 model Appointment {
   id         String    @id @default(uuid())
-  day        DateTime
+  day        String
   created_at DateTime? @default(now())
   status     Status    @default(PENDING)
 
@@ -63,7 +63,7 @@ model Appointment {
   doctor  Doctor  @relation(fields: [doctor_id], references: [id])
   patient Patient @relation(fields: [patient_id], references: [id])
 
-  @@map("appointment")
+  @@map("appointments")
 }
 
 model Avatar {
@@ -77,8 +77,8 @@ model Avatar {
 }
 
 model Availability {
-  id  String   @id @default(uuid())
-  day DateTime
+  id  String @id @default(uuid())
+  day String
 
   doctor_id String
   doctor    Doctor @relation(fields: [doctor_id], references: [id])

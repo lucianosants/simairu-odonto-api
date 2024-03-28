@@ -4,11 +4,11 @@ import request from 'supertest';
 import { app } from '@/app';
 import { createPatients } from '@/utils/test/create-patient';
 
-describe('Create Appointment (e2e)', () => {
+describe('Get Appointment By Id (e2e)', () => {
 	beforeAll(async () => app.ready());
 	afterAll(async () => app.close());
 
-	it('should be able to create an appointment', async () => {
+	it('should get an appointment by id', async () => {
 		const { auth } = await createPatients(app);
 
 		const patients = await request(app.server)
@@ -19,7 +19,7 @@ describe('Create Appointment (e2e)', () => {
 		const patientId = patients.body.patients[0].id;
 		const doctorId = patients.body.patients[0].doctorId;
 
-		const response = await request(app.server)
+		await request(app.server)
 			.post('/appointments')
 			.set(auth.field, auth.val)
 			.send({
@@ -29,6 +29,17 @@ describe('Create Appointment (e2e)', () => {
 				status: 'PENDING',
 			});
 
-		expect(response.statusCode).toEqual(201);
+		const appointments = await request(app.server)
+			.get('/appointments')
+			.set(auth.field, auth.val)
+			.query({ skip: '0', take: '1' });
+
+		const appointmentId = appointments.body.appointments[0].id;
+
+		const response = await request(app.server)
+			.get(`/appointments/${appointmentId}`)
+			.set(auth.field, auth.val);
+
+		expect(response.statusCode).toEqual(200);
 	});
 });

@@ -8,7 +8,7 @@ import { DoctorNotFoundError } from '../errors/doctor-not-found-error';
 import { PatientNotFoundError } from '../errors/patient-not-found-error';
 
 interface CreateAppointmentUseCaseRequest {
-	day: Date | string;
+	day: string;
 	doctorId: string;
 	patientId: string;
 	status: $Enums.Status;

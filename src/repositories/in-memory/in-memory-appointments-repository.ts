@@ -2,7 +2,11 @@ import { randomUUID } from 'node:crypto';
 import { Prisma, Appointment } from '@prisma/client';
 
 import { AppointmentsRepository } from '../appointments-repository';
-import { PaginationParamsProps, FindAllAppointmentsProps } from '@/@types';
+import {
+	PaginationParamsProps,
+	FindAllAppointmentsProps,
+	GetAppointmentsByDayProps,
+} from '@/@types';
 
 export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 	public items: Appointment[] = [];
@@ -13,7 +17,7 @@ export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 		const appointment: Appointment = {
 			id: randomUUID(),
 			created_at: new Date(),
-			day: data.day as Date,
+			day: data.day,
 			doctor_id: data.doctor.connect?.id!,
 			patient_id: data.patient.connect?.id!,
 			status: data.status!,
@@ -34,6 +38,23 @@ export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 		props: PaginationParamsProps
 	): Promise<FindAllAppointmentsProps | null> {
 		const appointments = this.items;
+
+		if (!appointments) return null;
+
+		return {
+			appointments,
+			count: appointments.length,
+			totalPages: Math.ceil(appointments.length / props.take),
+		};
+	}
+
+	public async findByDay(
+		date: string | Date,
+		props: PaginationParamsProps
+	): Promise<GetAppointmentsByDayProps | null> {
+		const appointments = this.items.filter(
+			(appointment) => appointment.day === date
+		);
 
 		if (!appointments) return null;
 

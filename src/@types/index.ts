@@ -22,3 +22,5 @@ export interface FindAllAppointmentsProps {
 	count: number;
 	totalPages: number;
 }
+
+export interface GetAppointmentsByDayProps extends FindAllAppointmentsProps {}
