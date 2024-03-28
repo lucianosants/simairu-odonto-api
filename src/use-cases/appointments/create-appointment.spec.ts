@@ -46,7 +46,7 @@ describe('Create Appointment Use Case', () => {
 		});
 
 		const { appointment } = await sut.execute({
-			day: new Date(),
+			day: new Date('04-26-2024').toLocaleDateString(),
 			doctorId: doctor.id,
 			patientId: patient.id,
 			status: 'PENDING',
@@ -75,7 +75,7 @@ describe('Create Appointment Use Case', () => {
 
 		await expect(
 			sut.execute({
-				day: new Date(),
+				day: new Date('04-26-2024').toLocaleDateString(),
 				doctorId: 'non-existent-doctor',
 				patientId: patient.id,
 				status: 'PENDING',
@@ -92,7 +92,7 @@ describe('Create Appointment Use Case', () => {
 
 		await expect(
 			sut.execute({
-				day: new Date(),
+				day: new Date('04-26-2024').toLocaleDateString(),
 				doctorId: doctor.id,
 				patientId: 'non-existent-patient',
 				status: 'PENDING',

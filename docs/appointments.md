@@ -24,7 +24,7 @@ POST: /appointments
 
 | Parâmetros | Tipo   | Descrição           |
 | ---------- | ------ | ------------------- |
-| day        | Date   | Data de agendamento |
+| day        | String   | Data de agendamento |
 | doctorId   | String | ID do médico        |
 | patientID  | String | ID do paciente      |
 | status     | Enum   | Status da consulta  |
@@ -35,7 +35,7 @@ POST: /appointments
 
 ```json
 {
-	"day": "2024-03-21T13:02:30.689Z",
+	"day": "04-26-2024",
 	"doctorId": "<doctor_id>",
 	"patientId": "<patient_id>",
 	"status": "PENDING"
@@ -100,7 +100,7 @@ status: 200
 	"appointments": [
 		{
 	      "id": "<appointment_id>",
-	      "day": "2024-03-21T13:02:30.689Z",
+	      "day": "04-26-2024",
 	      "created_at": "2024-03-21T13:37:27.357Z",
 	      "status": "PENDING",
 	      "doctor_id": "<doctor_id>",
@@ -137,7 +137,7 @@ status: 200
 {
 	"appointment": {
 	      "id": "<appointment_id>",
-	      "day": "2024-03-21T13:02:30.689Z",
+	      "day": "04-26-2024",
 	      "created_at": "2024-03-21T13:37:27.357Z",
 	      "status": "PENDING",
 	      "doctor_id": "<doctor_id>",

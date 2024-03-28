@@ -39,7 +39,7 @@ describe('Get Appointment by Id', () => {
 		});
 
 		const { id: appointmentId } = await appointmentsRepository.create({
-			day: new Date(),
+			day: new Date('04-26-2024').toLocaleDateString(),
 			doctor: { connect: { id: doctor.id } },
 			patient: { connect: { id: patient.id } },
 			status: 'PENDING',
@@ -48,7 +48,7 @@ describe('Get Appointment by Id', () => {
 		const { appointment } = await sut.execute({ id: appointmentId });
 
 		expect(appointment.id).toEqual(expect.any(String));
-		expect(appointment.day).toEqual(expect.any(Date));
+		expect(appointment.day).toEqual(expect.any(String));
 		expect(appointment).contains({
 			doctor_id: doctor.id,
 			patient_id: patient.id,

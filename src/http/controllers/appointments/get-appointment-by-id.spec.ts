@@ -23,7 +23,7 @@ describe('Get Appointment By Id (e2e)', () => {
 			.post('/appointments')
 			.set(auth.field, auth.val)
 			.send({
-				day: new Date(),
+				day: new Date('04-26-2024').toLocaleDateString(),
 				doctorId,
 				patientId,
 				status: 'PENDING',
