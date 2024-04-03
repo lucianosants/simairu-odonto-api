@@ -47,4 +47,55 @@ status: 201
 }
 ```
 
+---
 
+
+## Listar todas as disponibilidades
+
+
+Rota para listar e obter todas as disponibilidades registradas.
+
+```bash
+GET: /availabilities
+```
+
+  
+### `Search Params(query) da requisição`
+
+  
+Por padrão é exibida uma lista com 20 disponibilidades por página.
+
+| Query | Tipo | Descrição |
+| --------- | ------ | ----------------- |
+| take | string | Número de disponibilidades |
+| skip | string | Quantidade a pular para próxima página |
+
+
+### `Exemplo de URL com parâmetros`
+  
+```bash
+GET: /availabilities?take=10&skip=0
+```
+
+  
+### `Resposta`
+
+```http
+status: 200
+```
+
+```json
+{
+	"availabilities": [
+		{
+			"id": "<availability_id>",
+			"day": "04-26-2024",
+			"doctor_id": "<doctor_id>",
+	    }
+	],
+	"count": 1,
+	"totalPages": 1
+}
+```
+
+---

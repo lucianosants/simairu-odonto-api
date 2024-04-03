@@ -38,7 +38,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [x] Deve ser possível obter uma lista de consultas
 	- [x] Deve ser possível buscar uma consulta por id
 	- [x] Deve ser possível buscar uma ou mais consultas por data
-	- [ ] Deve ser possível o obter uma lista de disponibilidade
+	- [x] Deve ser possível o obter uma lista de disponibilidade
 	- [ ] Deve ser possível buscar um paciente por nome e retornar suas consultas agendadas
 	- [ ] Deve ser possível mudar o médico de uma consulta
 	- [ ] Deve ser possível mudar o dia e horário da consulta
