@@ -12,4 +12,5 @@ export interface AvailabilitiesRepository {
 	findAll(
 		props: PaginationParamsProps
 	): Promise<FindAllAvailabilitiesProps | null>;
+	delete(id: string): Promise<Availability | null>;
 }

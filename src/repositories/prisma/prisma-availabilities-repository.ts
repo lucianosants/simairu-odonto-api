@@ -58,4 +58,12 @@ export class PrismaAvailabilitiesRepository
 
 		return { availabilities, count, totalPages };
 	}
+
+	public async delete(id: string): Promise<Availability> {
+		const availability = await prisma.availability.delete({
+			where: { id },
+		});
+
+		return availability;
+	}
 }

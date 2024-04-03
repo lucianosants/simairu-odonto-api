@@ -59,4 +59,18 @@ export class InMemoryAvailabilitiesRepository
 
 		return availability ?? null;
 	}
+
+	public async delete(id: string): Promise<Availability | null> {
+		const availabilityIndex = this.items.findIndex(
+			(availability) => availability.id === id
+		);
+
+		if (availabilityIndex === -1) return null;
+
+		this.items.splice(availabilityIndex, 1);
+
+		const availability = this.items[availabilityIndex];
+
+		return availability;
+	}
 }
