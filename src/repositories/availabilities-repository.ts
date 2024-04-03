@@ -9,7 +9,7 @@ export interface AvailabilitiesRepository {
 		day: string,
 		props: PaginationParamsProps
 	): Promise<FindAllAvailabilitiesProps | null>;
-	findAllAvailabilities(
+	findAll(
 		props: PaginationParamsProps
 	): Promise<FindAllAvailabilitiesProps | null>;
 }

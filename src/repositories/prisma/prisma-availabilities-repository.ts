@@ -41,7 +41,7 @@ export class PrismaAvailabilitiesRepository
 		return { availabilities, count, totalPages };
 	}
 
-	public async findAllAvailabilities({
+	public async findAll({
 		skip,
 		take,
 	}: PaginationParamsProps): Promise<FindAllAvailabilitiesProps | null> {

@@ -23,7 +23,7 @@ export class InMemoryAvailabilitiesRepository
 		return availability;
 	}
 
-	public async findAllAvailabilities(
+	public async findAll(
 		props: PaginationParamsProps
 	): Promise<FindAllAvailabilitiesProps | null> {
 		const availabilities = this.items;
