@@ -9,11 +9,11 @@ describe('Register Doctor (e2e)', () => {
 	afterAll(async () => await app.close());
 
 	it('should be able register a Doctor', async () => {
-		const { token } = await getUserToken(app);
+		const { auth } = await getUserToken(app);
 
 		const response = await request(app.server)
 			.post('/doctors')
-			.set('Authorization', `Bearer ${token}`)
+			.set(auth.field, auth.val)
 			.send({
 				name: 'Hans Chucrutte',
 				email: 'hans@email.com',

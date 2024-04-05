@@ -54,7 +54,7 @@ export class PrismaAppointmentsRepository implements AppointmentsRepository {
 				skip,
 				take,
 			}),
-			prisma.appointment.count(),
+			prisma.appointment.count({ where: { day } }),
 		]);
 
 		const totalPages = Math.ceil(count / take);

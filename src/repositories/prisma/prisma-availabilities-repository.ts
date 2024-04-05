@@ -33,7 +33,7 @@ export class PrismaAvailabilitiesRepository
 				skip,
 				take,
 			}),
-			await prisma.availability.count(),
+			await prisma.availability.count({ where: { day } }),
 		];
 
 		const totalPages = Math.ceil(count / take);

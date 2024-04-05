@@ -3,33 +3,26 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import request from 'supertest';
 
 import { getUserToken } from '@/utils/test/get-user-token';
+import { prisma } from '@/lib/prisma';
 
 describe('Update Doctor (e2e)', () => {
 	beforeAll(async () => await app.ready());
 	afterAll(async () => await app.close());
 
 	it('should be able to update a doctor', async () => {
-		const { token } = await getUserToken(app);
+		const { auth } = await getUserToken(app);
 
-		await request(app.server)
-			.post('/doctors')
-			.set('Authorization', `Bearer ${token}`)
-			.send({
+		const { id } = await prisma.doctor.create({
+			data: {
 				name: 'Hans Chucrutte',
 				email: 'hans@email.com',
 				available: false,
-			});
-
-		const doctors = await request(app.server)
-			.get('/doctors')
-			.set('Authorization', `Bearer ${token}`)
-			.query({ take: 1, skip: 0 });
-
-		const doctorId = doctors.body.doctors[0].id;
+			},
+		});
 
 		const response = await request(app.server)
-			.patch(`/doctors/${doctorId}`)
-			.set('Authorization', `Bearer ${token}`)
+			.patch(`/doctors/${id}`)
+			.set(auth.field, auth.val)
 			.send({ available: true });
 
 		expect(response.statusCode).toEqual(201);

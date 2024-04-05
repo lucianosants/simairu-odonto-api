@@ -1,20 +1,32 @@
+import { hash } from 'bcryptjs';
 import { FastifyInstance } from 'fastify';
 import request from 'supertest';
 
-export async function getUserToken(app: FastifyInstance) {
-	const data = {
-		name: 'John Doe',
-		password: '12345678',
-		email: 'john@mail.com',
-	};
+import { prisma } from '@/lib/prisma';
 
-	await request(app.server)
-		.post('/users/auth/register')
-		.send({ ...data });
+type GetUserTokenProps = {
+	auth: {
+		field: string;
+		val: string;
+	};
+};
+
+export async function getUserToken(
+	app: FastifyInstance
+): Promise<GetUserTokenProps> {
+	const user = await prisma.user.create({
+		data: {
+			name: 'John Doe',
+			password_hash: await hash('12345678', 8),
+			email: 'john@mail.com',
+		},
+	});
 
 	const response = await request(app.server)
 		.post('/users/auth/login')
-		.send({ ...data });
+		.send({ email: user.email, password: '12345678' });
 
-	return { token: response.body.token };
+	return {
+		auth: { field: 'Authorization', val: `Bearer ${response.body.token}` },
+	};
 }
