@@ -17,7 +17,6 @@ describe('Find All Availabilities (e2e)', () => {
 			.set('Authorization', `Bearer ${token}`)
 			.query({ skip: '0', take: '20' });
 
-		console.log(response.body);
 		expect(response.statusCode).toEqual(200);
 	});
 });

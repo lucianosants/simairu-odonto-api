@@ -65,11 +65,11 @@ export class InMemoryAvailabilitiesRepository
 			(availability) => availability.id === id
 		);
 
+		const availability = this.items[availabilityIndex];
+
 		if (availabilityIndex === -1) return null;
 
 		this.items.splice(availabilityIndex, 1);
-
-		const availability = this.items[availabilityIndex];
 
 		return availability;
 	}
