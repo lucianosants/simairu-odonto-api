@@ -1,4 +1,4 @@
-import { Appointment, Doctor, Patient } from '@prisma/client';
+import { Appointment, Availability, Doctor, Patient } from '@prisma/client';
 
 export interface PaginationParamsProps {
 	skip: number;
@@ -24,3 +24,9 @@ export interface FindAllAppointmentsProps {
 }
 
 export interface GetAppointmentsByDayProps extends FindAllAppointmentsProps {}
+
+export interface FindAllAvailabilitiesProps {
+	availabilities: Availability[];
+	count: number;
+	totalPages: number;
+}

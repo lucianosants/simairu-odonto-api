@@ -24,7 +24,7 @@ export async function createAppointment(
 		const createAppointmentUseCase = makeCreateAppointmentUseCase();
 
 		await createAppointmentUseCase.execute({
-			day,
+			day: new Date(day).toLocaleDateString(),
 			doctorId,
 			patientId,
 			status,

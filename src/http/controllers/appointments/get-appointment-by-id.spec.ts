@@ -2,42 +2,42 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import request from 'supertest';
 
 import { app } from '@/app';
-import { createPatients } from '@/utils/test/create-patient';
+import { getUserToken } from '@/utils/test/get-user-token';
+import { prisma } from '@/lib/prisma';
 
 describe('Get Appointment By Id (e2e)', () => {
 	beforeAll(async () => app.ready());
 	afterAll(async () => app.close());
 
 	it('should get an appointment by id', async () => {
-		const { auth } = await createPatients(app);
+		const { auth } = await getUserToken(app);
 
-		const patients = await request(app.server)
-			.get('/patients')
-			.set(auth.field, auth.val)
-			.query({ take: '1', skip: '0' });
+		const doctor = await prisma.doctor.create({
+			data: {
+				name: 'Hans Chucrutte',
+				email: 'hans@email.com',
+				available: true,
+			},
+		});
 
-		const patientId = patients.body.patients[0].id;
-		const doctorId = patients.body.patients[0].doctorId;
+		const patient = await prisma.patient.create({
+			data: {
+				name: 'John Doe',
+				email: 'john@mail.com',
+				doctorId: doctor.id,
+			},
+		});
 
-		await request(app.server)
-			.post('/appointments')
-			.set(auth.field, auth.val)
-			.send({
+		const { id } = await prisma.appointment.create({
+			data: {
 				day: new Date('04-26-2024').toLocaleDateString(),
-				doctorId,
-				patientId,
-				status: 'PENDING',
-			});
-
-		const appointments = await request(app.server)
-			.get('/appointments')
-			.set(auth.field, auth.val)
-			.query({ skip: '0', take: '1' });
-
-		const appointmentId = appointments.body.appointments[0].id;
+				doctor_id: doctor.id,
+				patient_id: patient.id,
+			},
+		});
 
 		const response = await request(app.server)
-			.get(`/appointments/${appointmentId}`)
+			.get(`/appointments/${id}`)
 			.set(auth.field, auth.val);
 
 		expect(response.statusCode).toEqual(200);

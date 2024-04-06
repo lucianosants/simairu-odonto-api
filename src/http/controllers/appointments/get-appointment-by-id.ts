@@ -22,7 +22,7 @@ export async function getAppointmentById(
 		return reply.status(200).send(appointment);
 	} catch (error) {
 		if (error instanceof AppointmentNotFoundError) {
-			return reply.status(400).send({ message: error.message });
+			return reply.status(404).send({ message: error.message });
 		}
 
 		throw error;

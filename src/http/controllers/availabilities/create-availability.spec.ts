@@ -5,14 +5,14 @@ import { app } from '@/app';
 import { getUserToken } from '@/utils/test/get-user-token';
 import { prisma } from '@/lib/prisma';
 
-describe('Find All Doctors (e2e)', () => {
-	beforeAll(async () => await app.ready());
-	afterAll(async () => await app.close());
+describe('Create Availability (e2e)', () => {
+	beforeAll(async () => app.ready());
+	afterAll(async () => app.close());
 
-	it('should be able to find all and show Doctors', async () => {
+	it('should be able to create an Availability', async () => {
 		const { auth } = await getUserToken(app);
 
-		await prisma.doctor.create({
+		const { id } = await prisma.doctor.create({
 			data: {
 				name: 'Hans Chucrutte',
 				email: 'hans@email.com',
@@ -21,10 +21,13 @@ describe('Find All Doctors (e2e)', () => {
 		});
 
 		const response = await request(app.server)
-			.get('/doctors')
+			.post('/availabilities')
 			.set(auth.field, auth.val)
-			.query({ take: '20', skip: '0' });
+			.send({
+				day: new Date('04-26-2024').toLocaleDateString(),
+				doctorId: id,
+			});
 
-		expect(response.statusCode).toEqual(200);
+		expect(response.statusCode).toEqual(201);
 	});
 });
