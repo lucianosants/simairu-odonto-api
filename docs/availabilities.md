@@ -99,3 +99,36 @@ status: 200
 ```
 
 ---
+
+
+
+## Remover disponibilidade
+
+Rota para remover uma disponibilidade de dia e ter acesso às funcionalidades.
+
+```bash
+DELETE: /availabilities/availability_id
+```
+
+
+### `Parâmetros da requisição`
+
+| Parâmetro | Tipo   | Descrição         |
+| --------- | ------ | ----------------- |
+| id | string | id de disponibilidade |
+
+
+### `Resposta`
+
+```http 
+status: 200
+```
+
+```json
+{
+	"message": "Availability deleted successfully!"
+}
+```
+
+
+---
