@@ -17,7 +17,10 @@ export async function createAvailability(
 	try {
 		const createAvailabilityUseCase = makeCreateAvailabilityUseCase();
 
-		await createAvailabilityUseCase.execute({ day, doctorId });
+		await createAvailabilityUseCase.execute({
+			day: new Date(day).toLocaleDateString(),
+			doctorId,
+		});
 	} catch (error) {
 		if (error instanceof DoctorNotFoundError) {
 			return reply.status(409).send({ message: error.message });
