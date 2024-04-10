@@ -1,4 +1,4 @@
-import { Prisma, Appointment } from '@prisma/client';
+import { Prisma, Appointment, $Enums } from '@prisma/client';
 
 import { AppointmentsRepository } from '../appointments-repository';
 import { prisma } from '@/lib/prisma';
@@ -60,5 +60,17 @@ export class PrismaAppointmentsRepository implements AppointmentsRepository {
 		const totalPages = Math.ceil(count / take);
 
 		return { appointments, totalPages, count };
+	}
+
+	public async update(
+		id: string,
+		data: Prisma.AppointmentUpdateInput
+	): Promise<Appointment> {
+		const appointment = await prisma.appointment.update({
+			where: { id },
+			data,
+		});
+
+		return appointment;
 	}
 }

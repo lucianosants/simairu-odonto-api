@@ -6,6 +6,7 @@ import { createAppointment } from './create-appointment';
 import { findAllAppointments } from './find-all-appointments';
 import { getAppointmentById } from './get-appointment-by-id';
 import { getAppointmentByDay } from './get-appointments-by-day';
+import { updateAppointment } from './update-appointment';
 
 export async function appointmentsRoutes(app: FastifyInstance) {
 	app.post('/appointments', { onRequest: verifyJWT }, createAppointment);
@@ -16,4 +17,5 @@ export async function appointmentsRoutes(app: FastifyInstance) {
 		{ onRequest: verifyJWT },
 		getAppointmentByDay
 	);
+	app.patch('/appointments/:id', { onRequest: verifyJWT }, updateAppointment);
 }
