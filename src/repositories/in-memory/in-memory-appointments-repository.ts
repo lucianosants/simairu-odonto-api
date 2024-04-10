@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { Prisma, Appointment } from '@prisma/client';
+import { Prisma, Appointment, $Enums } from '@prisma/client';
 
 import { AppointmentsRepository } from '../appointments-repository';
 import {
@@ -7,6 +7,11 @@ import {
 	FindAllAppointmentsProps,
 	GetAppointmentsByDayProps,
 } from '@/@types';
+
+interface UpdateAppointmentProps {
+	day?: string;
+	status?: $Enums.Status;
+}
 
 export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 	public items: Appointment[] = [];
@@ -63,5 +68,24 @@ export class InMemoryAppointmentsRepository implements AppointmentsRepository {
 			count: appointments.length,
 			totalPages: Math.ceil(appointments.length / props.take),
 		};
+	}
+
+	public async update(
+		id: string,
+		data: UpdateAppointmentProps
+	): Promise<Appointment> {
+		const appointments = this.items.map((appointment) => {
+			if (appointment.id === id) {
+				return { ...appointment, day: data.day!, status: data.status! };
+			}
+
+			return appointment;
+		});
+
+		const appointment = appointments.find(
+			(appointment) => appointment.id === id
+		);
+
+		return { ...appointment! };
 	}
 }
