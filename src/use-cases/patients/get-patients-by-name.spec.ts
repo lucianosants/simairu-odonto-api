@@ -5,20 +5,21 @@ import { InMemoryPatientsRepository } from '@/repositories/in-memory/in-memory-p
 import { DoctorsRepository } from '@/repositories/doctors-repository';
 import { InMemoryDoctorsRepository } from '@/repositories/in-memory/in-memory-doctors-repository';
 
-import { FindAllPatientsUseCase } from './find-all-patients';
+import { GetPatientsByNameUseCase } from './get-patients-by-name';
+import { PatientNotFoundError } from '../errors/patient-not-found-error';
 
 let patientsRepository: PatientsRepository;
 let doctorsRepository: DoctorsRepository;
-let sut: FindAllPatientsUseCase;
+let sut: GetPatientsByNameUseCase;
 
-describe('Find All Patients Use Case', () => {
+describe('Find Patients by name Use Case', () => {
 	beforeEach(() => {
 		patientsRepository = new InMemoryPatientsRepository();
 		doctorsRepository = new InMemoryDoctorsRepository();
-		sut = new FindAllPatientsUseCase(patientsRepository);
+		sut = new GetPatientsByNameUseCase(patientsRepository);
 	});
 
-	it('should be able to find all Patients', async () => {
+	it('should be able to find Patients by name', async () => {
 		const doctor = await doctorsRepository.create({
 			name: 'Hans Chucrutte',
 			email: 'hans@email.com',
@@ -31,30 +32,14 @@ describe('Find All Patients Use Case', () => {
 			current_doctor: { connect: { id: doctor.id } },
 		});
 
-		await patientsRepository.create({
-			email: 'john@mail.com',
-			name: 'John Doe',
-			current_doctor: { connect: { id: doctor.id } },
-		});
+		const { patients } = await sut.execute({ name: 'john doe' });
 
-		await patientsRepository.create({
-			email: 'john@mail.com',
-			name: 'John Doe',
-			current_doctor: { connect: { id: doctor.id } },
-		});
-
-		const patients = await sut.execute({ take: 5, skip: 0 });
-
-		expect(patients?.patients).toHaveLength(3);
-		expect(patients?.count).toEqual(3);
-		expect(patients?.totalPages).toEqual(1);
+		expect(patients).toHaveLength(1);
 	});
 
 	it('should be able to find a empty list', async () => {
-		const patients = await sut.execute({ take: 20, skip: 0 });
-
-		expect(patients?.patients).toHaveLength(0);
-		expect(patients?.count).toEqual(0);
-		expect(patients?.totalPages).toEqual(0);
+		await expect(sut.execute({ name: 'John Doe' })).rejects.toBeInstanceOf(
+			PatientNotFoundError
+		);
 	});
 });

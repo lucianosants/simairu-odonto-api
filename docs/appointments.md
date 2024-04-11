@@ -203,3 +203,56 @@ status: 200
 
 ---
 
+
+## Alterar Consulta
+
+Rota para atualizar informações de uma consulta.
+
+
+```bash
+
+PATCH: /appointments/<appointment_id>
+
+```
+
+### `Parâmetros da requisição`
+
+| Parâmetros | Tipo    | Descrição        |
+| ---------- | ------- | ---------------- |
+| day        | string  | Data de consulta |
+| status  | boolean | Status da consulta  |
+
+
+
+### `Corpo da solicitação`
+
+  
+```json
+
+{
+	"day": "04-30-2024",
+	"status": "HELD"
+}
+
+```
+
+
+### `Resposta`
+
+
+```http
+
+status: 201
+
+```
+
+
+```js
+
+{
+
+message: 'Appointment updated successfully!'
+
+}
+
+```

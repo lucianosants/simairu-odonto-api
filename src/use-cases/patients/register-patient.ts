@@ -31,7 +31,7 @@ export class RegisterPatientUseCase {
 			await this.doctorsRepository.findById(data.current_doctor),
 		];
 
-		const patientAlready = someEmailFound || someNameFound;
+		const patientAlready = someEmailFound || someNameFound?.length;
 
 		if (!doctorFound) throw new DoctorNotFoundError();
 		if (patientAlready) throw new PatientAlreadyExistsError();

@@ -29,8 +29,12 @@ export class InMemoryPatientsRepository implements PatientsRepository {
 		return patient;
 	}
 
-	public async findByName(name: string): Promise<Patient | null> {
-		const patient = this.items.find((item) => item.name === name);
+	public async findByName(name: string): Promise<Patient[] | null> {
+		const lowerCaseName = name.toLowerCase();
+
+		const patient = this.items.filter(
+			(item) => item.name.toLowerCase() === lowerCaseName
+		);
 
 		if (!patient) return null;
 

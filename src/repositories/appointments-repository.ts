@@ -15,4 +15,8 @@ export interface AppointmentsRepository {
 	findAll(
 		props: PaginationParamsProps
 	): Promise<FindAllAppointmentsProps | null>;
+	update(
+		id: string,
+		data: Prisma.AppointmentUpdateInput
+	): Promise<Appointment>;
 }

@@ -99,3 +99,40 @@ status: 200
 ```
 
 
+
+## Buscar pacientes por nome
+
+  
+
+Rota para obter uma lista de pacientes.
+
+```bash
+GET: /patients/<patient_id>
+```
+
+  
+### `Resposta`
+
+```http
+status: 200
+```
+
+
+```json
+{
+	"patients": [
+        {
+            "id": "patient_id",
+            "name": "John Doe",
+            "email": "john@mail.com",
+            "created_at": "2024-04-11T12:45:27.169Z",
+            "doctorId": "doctor_id"
+        }
+    ]
+}
+```
+
+
+---
+
+
