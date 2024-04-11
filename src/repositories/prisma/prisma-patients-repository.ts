@@ -17,8 +17,11 @@ export class PrismaPatientsRepository implements PatientsRepository {
 		return patient;
 	}
 
-	public async findByName(name: string): Promise<Patient | null> {
-		const patient = await prisma.patient.findUnique({ where: { name } });
+	public async findByName(name: string): Promise<Patient[] | null> {
+		const patient = await prisma.patient.findMany({
+			where: { name: { mode: 'insensitive', contains: name } },
+			orderBy: { name: 'asc' },
+		});
 
 		return patient;
 	}
