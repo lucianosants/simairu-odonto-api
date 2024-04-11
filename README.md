@@ -26,7 +26,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 
 ## `Funcionalidades`
 
-  - [ ] `RFs (Requisitos funcionais)`
+  - [x] `RFs (Requisitos funcionais)`
 	- [x] Deve ser possível se autenticar
 	- [x] Deve ser possível obter o perfil de um usuário logado
 	- [x] Deve ser possível criar o cadastro de um médico 
@@ -39,7 +39,7 @@ Este projeto tem como objetivo, facilitar a realização de **agendamentos** par
 	- [x] Deve ser possível buscar uma consulta por id
 	- [x] Deve ser possível buscar uma ou mais consultas por data
 	- [x] Deve ser possível o obter uma lista de disponibilidade
-	- [ ] Deve ser possível buscar um paciente por nome e retornar suas consultas agendadas
+	- [x] Deve ser possível buscar um pacientes por nome
 	- [x] Deve ser possível mudar o dia da consulta
 	- [x] Deve ser possível marcar a consulta como realizada
 	- [x] Deve ser possível marcar uma consulta como não realizada
